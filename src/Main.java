@@ -2,18 +2,13 @@ import javax.swing.*;
 
 public class Main extends JFrame {
 
-    public Main(){
-        initPantalla();
-    }
+    Formulario form = new Formulario();
 
-    //Creamos la ventana
-    private void initPantalla() {
-        setLayout(null); //Layout absoluto
-        setTitle("Formulario"); //Título del JFrame
-        setSize(520, 520); //Dimensiones del JFrame
-        setResizable(false); //No redimensionable
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Cerrar proceso al cerrar ventana
-        setVisible(true); //Mostrar JFrame
+    public Main(){
+        //Creamos el formulario
+        form.crearFormulario();
+        //Iniciamos la ventana del formulario
+        form.initFormulario();
     }
 
     public static void main(String[] args) {
