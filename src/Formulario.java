@@ -19,23 +19,23 @@ public class Formulario extends JFrame {
     public void crearFormulario(){
         //Añadimos los JLabel
         nombreJL = new JLabel("Nombre:");
-        nombreJL.setBounds(10,10,100,30);
+        nombreJL.setBounds(43,10,100,30);
         add(nombreJL);
 
         apellidosJL = new JLabel("Apellido:");
-        apellidosJL.setBounds(10,50,100,30);
+        apellidosJL.setBounds(42,50,100,30);
         add(apellidosJL);
 
         direccionJL = new JLabel("Dirección:");
-        direccionJL.setBounds(10,90,100,30);
+        direccionJL.setBounds(33,90,100,30);
         add(direccionJL);
 
         telefonoJL = new JLabel("Teléfono:");
-        telefonoJL.setBounds(10,130,100,30);
+        telefonoJL.setBounds(36,130,100,30);
         add(telefonoJL);
 
         nifJL = new JLabel("NIF:");
-        nifJL.setBounds(10,170,100,30);
+        nifJL.setBounds(68,170,100,30);
         add(nifJL);
 
         codigoPostalJL = new JLabel("Código Postal:");
@@ -43,15 +43,15 @@ public class Formulario extends JFrame {
         add(codigoPostalJL);
 
         emailJL = new JLabel("Email:");
-        emailJL.setBounds(10,250,100,30);
+        emailJL.setBounds(58,250,100,30);
         add(emailJL);
 
         contrasenaJL = new JLabel("Contraseña:");
-        contrasenaJL.setBounds(10,290,100,30);
+        contrasenaJL.setBounds(23,290,100,30);
         add(contrasenaJL);
 
         poblacionJL = new JLabel("Población:");
-        poblacionJL.setBounds(10,330,100,30);
+        poblacionJL.setBounds(33,330,100,30);
         add(poblacionJL);
 
         //Añadimos los JTextField
