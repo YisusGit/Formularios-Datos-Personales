@@ -12,7 +12,11 @@ public class Formulario extends JFrame implements ItemListener {
     public JRadioButton sexoMascRB, sexoFemRB, sexoOtroRB;
     public ButtonGroup grupoSexo;
     public JCheckBox espanol, ingles, frances, aleman, italiano, otros;
-    String [] paises = {"Selecione Pais", "Alemania", "Argentina", "Brasil", "Colombia", "España", "Estados Unidos", "Francia", "Holanda", "Inglaterra"};
+    public JButton mostrarDatos;
+    public JEditorPane textoDatos;
+    public JScrollPane scrlDatos;
+
+    String [] paises = {"", "Alemania", "Argentina", "Brasil", "Colombia", "España", "Estados Unidos", "Francia", "Holanda", "Inglaterra"};
     String [] Alemania = {"Berlín", "Bremen", "Colonia", "Dortmund", "Düsseldorf", "Hamburg", "Hannover", "Kiel", "Mainz", "Munich"};
     String [] Argentina = {"Buenos Aires", "Córdoba", "Entre Rios", "Formosa", "Jujuy", "La Rioja", "Mendoza", "Misiones", "Neuquen", "San Juan"};
     String [] Brasil = {"Amapa", "Amazonas", "Bahía", "Caera", "Goias", "Maranhao", "Para", "Paraiba", "Pabamá", "Río de Janeiro"};
@@ -28,7 +32,7 @@ public class Formulario extends JFrame implements ItemListener {
     public void initFormulario() {
         setLayout(null); //Layout absoluto
         setTitle("Formulario"); //Título del JFrame
-        setSize(520, 520); //Dimensiones del JFrame
+        setSize(700, 540); //Dimensiones del JFrame
         setResizable(false); //No redimensionable
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); //Cerrar proceso al cerrar ventana
         setVisible(true); //Mostrar JFrame
@@ -180,6 +184,26 @@ public class Formulario extends JFrame implements ItemListener {
         otros.setBounds(350,245,75,30);
         add(otros);
 
+        //Añadimos el botón encargado de generar todos los datos
+        mostrarDatos = new JButton("Mostrar datos");
+        mostrarDatos.setBounds(450, 15, 220,30);
+        add(mostrarDatos);
+        mostrarDatos.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mostrarTexto();
+            }
+        });
+
+
+        //Añadimos el JEditorPane con su respectivo JScrollPane
+        textoDatos = new JEditorPane();
+        textoDatos.setContentType("text/html");
+        textoDatos.setEditable(false);
+        scrlDatos = new JScrollPane(textoDatos);
+        scrlDatos.setBounds(450,60, 220,220);
+        add(scrlDatos);
+
 
     }//Fin crearFormulario
 
@@ -246,4 +270,58 @@ public class Formulario extends JFrame implements ItemListener {
             }
         }//Fin If
     }//Fin itemStateChanged
+
+    //Método encargado de mostrar los datos del usuario en el JScrollPane
+    public void mostrarTexto(){
+        String sexoUsuario = "";
+        String provinciaUsuario = "";
+        String paisUsuario;
+
+        if(sexoMascRB.isSelected()){
+            sexoUsuario = sexoMascRB.getText();
+        }
+        else if(sexoFemRB.isSelected()){
+            sexoUsuario = sexoFemRB.getText();
+        }
+        else if(sexoOtroRB.isSelected()){
+            sexoUsuario = sexoOtroRB.getText();
+        }
+
+        //Si no selecciona la provincia evitamos que salga como null
+        if(provinciaCB != null){
+            provinciaUsuario = String.valueOf(provinciaCB.getSelectedItem());
+        }
+
+        else{
+            provinciaUsuario = "";
+        }
+
+
+        textoDatos.setText(
+                "<b>Nombre: </b>" +
+                        nombre.getText() + "<br>" +
+                "<b>Apellido: </b>" +
+                        apellidos.getText() + "<br>" +
+                "<b>Dirección: </b>" +
+                        direccion.getText() + "<br>" +
+                "<b>Teléfono: </b>" +
+                        telefono.getText() + "<br>" +
+                "<b>NIF: </b>" +
+                        nif.getText() + "<br>" +
+                "<b>Código Postal: </b>" +
+                        codigoPostal.getText() + "<br>" +
+                "<b>Email: </b>" +
+                        email.getText() + "<br>" +
+                "<b>Población: </b>" +
+                        poblacion.getText() + "<br>" +
+                "<b>País: </b>" +
+                        paisCB.getSelectedItem() + "<br>" +
+                "<b>Provincia: </b>" +
+                        provinciaUsuario + "<br>" +
+                "<b>Sexo: </b>" +
+                        sexoUsuario + "<br>" +
+                "<b>Idioma: </b>"
+        );
+    }
+
 }//Fin Class
