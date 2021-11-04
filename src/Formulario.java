@@ -17,7 +17,7 @@ public class Formulario extends JFrame implements ItemListener {
     public JScrollPane scrlDatos;
 
     String [] paises = {"", "Alemania", "Argentina", "Brasil", "Colombia", "España", "Estados Unidos", "Francia", "Holanda", "Inglaterra"};
-    String [] Alemania = {"Berlín", "Bremen", "Colonia", "Dortmund", "Düsseldorf", "Hamburg", "Hannover", "Kiel", "Mainz", "Munich"};
+    String [] Alemania = {"", "Berlín", "Bremen", "Colonia", "Dortmund", "Düsseldorf", "Hamburg", "Hannover", "Kiel", "Mainz", "Munich"};
     String [] Argentina = {"Buenos Aires", "Córdoba", "Entre Rios", "Formosa", "Jujuy", "La Rioja", "Mendoza", "Misiones", "Neuquen", "San Juan"};
     String [] Brasil = {"Amapa", "Amazonas", "Bahía", "Caera", "Goias", "Maranhao", "Para", "Paraiba", "Pabamá", "Río de Janeiro"};
     String [] Colombia = {"Amazonas", "Bolívar", "Caldas", "Cesar", "Huila", "Meta", "Putumayo", "Risaralda", "Santander", "Tolima"};
@@ -139,6 +139,7 @@ public class Formulario extends JFrame implements ItemListener {
         provinciaCB = new JComboBox();
         provinciaCB.setBounds(95,415,130,20);
         add(provinciaCB);
+        provinciaCB.setEnabled(false);
 
         //Creamos el objeto grupoSexo
         grupoSexo = new ButtonGroup();
@@ -275,7 +276,7 @@ public class Formulario extends JFrame implements ItemListener {
     public void mostrarTexto(){
         String sexoUsuario = "";
         String provinciaUsuario = "";
-        String paisUsuario;
+
 
         if(sexoMascRB.isSelected()){
             sexoUsuario = sexoMascRB.getText();
@@ -288,12 +289,14 @@ public class Formulario extends JFrame implements ItemListener {
         }
 
         //Si no selecciona la provincia evitamos que salga como null
-        if(provinciaCB != null){
+        if(provinciaCB.isEnabled()){
             provinciaUsuario = String.valueOf(provinciaCB.getSelectedItem());
+            System.out.println("Adios");
         }
 
         else{
             provinciaUsuario = "";
+            System.out.println("Hola");
         }
 
 
