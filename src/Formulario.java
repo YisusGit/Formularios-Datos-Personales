@@ -7,14 +7,15 @@ import java.awt.event.ItemListener;
 public class Formulario extends JFrame implements ItemListener {
     //Añadimos los campos que va a usar el usuario con sus respectivos nombres
     public JTextField nombre, apellidos, direccion, telefono, nif, codigoPostal, email, contrasena, poblacion;
-    public JLabel nombreJL, apellidosJL, direccionJL, telefonoJL, nifJL, codigoPostalJL, emailJL, contrasenaJL, poblacionJL, paisJL, provinciaJL, sexoJL, idiomaJL;
+    public JLabel nombreJL, apellidosJL, direccionJL, telefonoJL, nifJL, codigoPostalJL, emailJL, contrasenaJL, poblacionJL, paisJL, provinciaJL, sexoJL, idiomaJL, cartapresentacionJL;
     public JComboBox paisCB, provinciaCB;
     public JRadioButton sexoMascRB, sexoFemRB, sexoOtroRB;
     public ButtonGroup grupoSexo;
     public JCheckBox espanol, ingles, frances, aleman, italiano, otros;
+    public JTextArea cartaPresentacionTA;
     public JButton mostrarDatos;
     public JEditorPane textoDatos;
-    public JScrollPane scrlDatos;
+    public JScrollPane scrlDatos, scrlpres;
 
     String [] paises = {"", "Alemania", "Argentina", "Brasil", "Colombia", "España", "Estados Unidos", "Francia", "Holanda", "Inglaterra"};
     String [] Alemania = {"", "Berlín", "Bremen", "Colonia", "Dortmund", "Düsseldorf", "Hamburg", "Hannover", "Kiel", "Mainz", "Munich"};
@@ -92,6 +93,10 @@ public class Formulario extends JFrame implements ItemListener {
         idiomaJL = new JLabel("Idioma:");
         idiomaJL.setBounds(250,140, 100,30);
         add(idiomaJL);
+
+        cartapresentacionJL = new JLabel("Carta de Presentacion:");
+        cartapresentacionJL.setBounds(250,280,140,30);
+        add(cartapresentacionJL);
 
         //Añadimos los JTextField
         nombre = new JTextField();
@@ -185,6 +190,14 @@ public class Formulario extends JFrame implements ItemListener {
         otros.setBounds(350,245,75,30);
         add(otros);
 
+        //Añadimos JTextArea con su JScrollPane
+        cartaPresentacionTA = new JTextArea();
+        cartaPresentacionTA.setLineWrap(true); //Cuando llego al final salta a la siguiente
+        add(cartaPresentacionTA);
+        scrlpres = new JScrollPane(cartaPresentacionTA);
+        scrlpres.setBounds(250,310,420,175);
+        add(scrlpres);
+
         //Añadimos el botón encargado de generar todos los datos
         mostrarDatos = new JButton("Mostrar datos");
         mostrarDatos.setBounds(450, 15, 220,30);
@@ -196,7 +209,6 @@ public class Formulario extends JFrame implements ItemListener {
             }
         });
 
-
         //Añadimos el JEditorPane con su respectivo JScrollPane
         textoDatos = new JEditorPane();
         textoDatos.setContentType("text/html");
@@ -204,7 +216,6 @@ public class Formulario extends JFrame implements ItemListener {
         scrlDatos = new JScrollPane(textoDatos);
         scrlDatos.setBounds(450,60, 220,220);
         add(scrlDatos);
-
 
     }//Fin crearFormulario
 
@@ -277,7 +288,6 @@ public class Formulario extends JFrame implements ItemListener {
         String sexoUsuario = "";
         String provinciaUsuario = "";
 
-
         if(sexoMascRB.isSelected()){
             sexoUsuario = sexoMascRB.getText();
         }
@@ -293,12 +303,10 @@ public class Formulario extends JFrame implements ItemListener {
             provinciaUsuario = String.valueOf(provinciaCB.getSelectedItem());
             System.out.println("Adios");
         }
-
         else{
             provinciaUsuario = "";
             System.out.println("Hola");
         }
-
 
         textoDatos.setText(
                 "<b>Nombre: </b>" +
@@ -325,6 +333,5 @@ public class Formulario extends JFrame implements ItemListener {
                         sexoUsuario + "<br>" +
                 "<b>Idioma: </b>"
         );
-    }
-
+    }//Fin mostrarTexto
 }//Fin Class
