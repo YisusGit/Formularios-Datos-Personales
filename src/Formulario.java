@@ -6,9 +6,12 @@ import java.awt.event.ItemListener;
 
 public class Formulario extends JFrame implements ItemListener {
     //Añadimos los campos que va a usar el usuario con sus respectivos nombres
-    public JTextField nombre, apellidos, direccion, telefono, nif, codigoPostal, email, contrasena, poblacion, poblacion2;
-    public JLabel nombreJL, apellidosJL, direccionJL, telefonoJL, nifJL, codigoPostalJL, emailJL, contrasenaJL, poblacionJL, paisJL, provinciaJL;
+    public JTextField nombre, apellidos, direccion, telefono, nif, codigoPostal, email, contrasena, poblacion;
+    public JLabel nombreJL, apellidosJL, direccionJL, telefonoJL, nifJL, codigoPostalJL, emailJL, contrasenaJL, poblacionJL, paisJL, provinciaJL, sexoJL, idiomaJL;
     public JComboBox paisCB, provinciaCB;
+    public JRadioButton sexoMascRB, sexoFemRB, sexoOtroRB;
+    public ButtonGroup grupoSexo;
+    public JCheckBox espanol, ingles, frances, aleman, italiano, otros;
     String [] paises = {"Selecione Pais", "Alemania", "Argentina", "Brasil", "Colombia", "España", "Estados Unidos", "Francia", "Holanda", "Inglaterra"};
     String [] Alemania = {"Berlín", "Bremen", "Colonia", "Dortmund", "Düsseldorf", "Hamburg", "Hannover", "Kiel", "Mainz", "Munich"};
     String [] Argentina = {"Buenos Aires", "Córdoba", "Entre Rios", "Formosa", "Jujuy", "La Rioja", "Mendoza", "Misiones", "Neuquen", "San Juan"};
@@ -78,6 +81,14 @@ public class Formulario extends JFrame implements ItemListener {
         provinciaJL.setBounds(34,410,100,30);
         add(provinciaJL);
 
+        sexoJL = new JLabel("Sexo:");
+        sexoJL.setBounds(250, 10, 100,30);
+        add(sexoJL);
+
+        idiomaJL = new JLabel("Idioma:");
+        idiomaJL.setBounds(250,140, 100,30);
+        add(idiomaJL);
+
         //Añadimos los JTextField
         nombre = new JTextField();
         nombre.setBounds(95,15,100,20);
@@ -124,6 +135,52 @@ public class Formulario extends JFrame implements ItemListener {
         provinciaCB = new JComboBox();
         provinciaCB.setBounds(95,415,130,20);
         add(provinciaCB);
+
+        //Creamos el objeto grupoSexo
+        grupoSexo = new ButtonGroup();
+
+        //Añadimos los RadioButton para selección de sexo
+        sexoMascRB = new JRadioButton("Masculino");
+        sexoMascRB.setBounds(250,35,100, 30);
+        add(sexoMascRB);
+        grupoSexo.add(sexoMascRB);
+
+        sexoFemRB = new JRadioButton("Femenino");
+        sexoFemRB.setBounds(250, 65,100,30);
+        add(sexoFemRB);
+        grupoSexo.add(sexoFemRB);
+
+        sexoOtroRB = new JRadioButton("Otro");
+        sexoOtroRB.setBounds(250, 95,100,30);
+        add(sexoOtroRB);
+        grupoSexo.add(sexoOtroRB);
+
+        //Añadimos los JCheckBox
+        espanol = new JCheckBox("Español");
+        espanol.setBounds(250, 165, 75,30);
+        add(espanol);
+
+        ingles = new JCheckBox("Inglés");
+        ingles.setBounds(350,165,75,30);
+        add(ingles);
+
+        frances = new JCheckBox("Francés");
+        frances.setBounds(250,205,75,30);
+        add(frances);
+
+        aleman = new JCheckBox("Alemán");
+        aleman.setBounds(350,205,75,30);
+        add(aleman);
+
+        italiano = new JCheckBox("Italiano");
+        italiano.setBounds(250,245,75,30);
+        add(italiano);
+
+        otros = new JCheckBox("Otros");
+        otros.setBounds(350,245,75,30);
+        add(otros);
+
+
     }//Fin crearFormulario
 
     //Metodo ItemListener, dependiendo del pais que seleccione aparecen las provincias
