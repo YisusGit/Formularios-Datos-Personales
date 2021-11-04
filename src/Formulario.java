@@ -117,12 +117,12 @@ public class Formulario extends JFrame implements ItemListener {
 
         //Añadimos los JComboBox
         paisCB = new JComboBox(paises);
-        paisCB.setBounds(95,375,80,20);
+        paisCB.setBounds(95,375,130,20);
         add(paisCB);
         paisCB.addItemListener( this); //Añadimos ItemListener
 
         provinciaCB = new JComboBox();
-        provinciaCB.setBounds(95,415,80,20);
+        provinciaCB.setBounds(95,415,130,20);
         add(provinciaCB);
     }//Fin crearFormulario
 
