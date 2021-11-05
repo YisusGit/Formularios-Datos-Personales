@@ -23,6 +23,7 @@ public class Formulario extends JFrame implements ItemListener, ActionListener, 
     public JMenu menuOpciones, menuFormato, menuAcciones;
     public JMenuItem itemRojo, itemVerde, itemAzul, itemNaranja, itemNegro, item10, item12, item14, item16, item18, itemLimpiar, itemSalir;
 
+    String textoidiomas2 = "";
     String [] paises = {"", "Alemania", "Argentina", "Brasil", "Colombia", "España", "Estados Unidos", "Francia", "Holanda", "Inglaterra"};
     String [] Alemania = {"", "Berlín", "Bremen", "Colonia", "Dortmund", "Düsseldorf", "Hamburg", "Hannover", "Kiel", "Mainz", "Munich"};
     String [] Argentina = {"Buenos Aires", "Córdoba", "Entre Rios", "Formosa", "Jujuy", "La Rioja", "Mendoza", "Misiones", "Neuquen", "San Juan"};
@@ -180,22 +181,27 @@ public class Formulario extends JFrame implements ItemListener, ActionListener, 
         //Añadimos los JCheckBox
         espanol = new JCheckBox("Español");
         espanol.setBounds(250, 165, 75,30);
+        espanol.addChangeListener(this);
         add(espanol);
 
         ingles = new JCheckBox("Inglés");
         ingles.setBounds(350,165,75,30);
+        ingles.addChangeListener(this);
         add(ingles);
 
         frances = new JCheckBox("Francés");
         frances.setBounds(250,205,75,30);
+        frances.addChangeListener(this);
         add(frances);
 
         aleman = new JCheckBox("Alemán");
         aleman.setBounds(350,205,75,30);
+        aleman.addChangeListener(this);
         add(aleman);
 
         italiano = new JCheckBox("Italiano");
         italiano.setBounds(250,245,75,30);
+        italiano.addChangeListener(this);
         add(italiano);
 
         otros = new JCheckBox("Otros");
@@ -297,12 +303,31 @@ public class Formulario extends JFrame implements ItemListener, ActionListener, 
 
     @Override
     public void stateChanged(ChangeEvent e) {
+        String textoidiomas = "  ";
         if (otros.isSelected()){
             otrosidiomas.setVisible(true);
         }
         if (otros.isSelected() == false){
             otrosidiomas.setVisible(false);
         }
+        if (espanol.isSelected()){
+            textoidiomas += "Español, ";
+        }
+        if (ingles.isSelected()){
+            textoidiomas += "Inglés, ";
+        }
+        if (frances.isSelected()){
+            textoidiomas += "Francés, ";
+        }
+        if (aleman.isSelected()){
+            textoidiomas += "Alemán, ";
+        }
+        if (italiano.isSelected()){
+            textoidiomas += "Italiano, ";
+        }
+        //Quitar ultima coma
+        textoidiomas = textoidiomas.substring(0, textoidiomas.length() - 2);
+        textoidiomas2 = textoidiomas;
     }
 
     //Metodo ItemListener, dependiendo del pais que seleccione aparecen las provincias
@@ -387,11 +412,9 @@ public class Formulario extends JFrame implements ItemListener, ActionListener, 
         //Si no selecciona la provincia evitamos que salga como null
         if(provinciaCB.isEnabled()){
             provinciaUsuario = String.valueOf(provinciaCB.getSelectedItem());
-            System.out.println("Adios");
         }
         else{
             provinciaUsuario = "";
-            System.out.println("Hola");
         }
 
         textoDatos.setText(
@@ -417,7 +440,8 @@ public class Formulario extends JFrame implements ItemListener, ActionListener, 
                         provinciaUsuario + "<br>" +
                 "<b>Sexo: </b>" +
                         sexoUsuario + "<br>" +
-                "<b>Idioma: </b>"
+                "<b>Idioma: </b>" +
+                        otrosidiomas.getText()+ "<b>,</b>" + textoidiomas2 + "<br>"
         );
     }//Fin mostrarTexto
 
