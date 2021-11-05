@@ -131,7 +131,8 @@ public class Formulario extends JFrame implements ItemListener, ActionListener {
         email.setBounds(95,255,100,20);
         add(email);
 
-        contrasena = new JTextField();
+        //Campo de contraseña, para que no salga como texto plano
+        contrasena = new JPasswordField();
         contrasena.setBounds(95,295,100,20);
         add(contrasena);
 
