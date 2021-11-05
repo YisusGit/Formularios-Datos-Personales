@@ -1,13 +1,15 @@
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-public class Formulario extends JFrame implements ItemListener, ActionListener {
+public class Formulario extends JFrame implements ItemListener, ActionListener, ChangeListener {
     //Añadimos los campos que va a usar el usuario con sus respectivos nombres
-    public JTextField nombre, apellidos, direccion, telefono, nif, codigoPostal, email, contrasena, poblacion;
+    public JTextField nombre, apellidos, direccion, telefono, nif, codigoPostal, email, contrasena, poblacion, otrosidiomas;
     public JLabel nombreJL, apellidosJL, direccionJL, telefonoJL, nifJL, codigoPostalJL, emailJL, contrasenaJL, poblacionJL, paisJL, provinciaJL, sexoJL, idiomaJL, cartapresentacionJL;
     public JComboBox paisCB, provinciaCB;
     public JRadioButton sexoMascRB, sexoFemRB, sexoOtroRB;
@@ -131,6 +133,11 @@ public class Formulario extends JFrame implements ItemListener, ActionListener {
         email.setBounds(95,255,100,20);
         add(email);
 
+        otrosidiomas = new JTextField();
+        otrosidiomas.setBounds(295,145,100,20);
+        add(otrosidiomas);
+        otrosidiomas.setVisible(false);
+
         //Campo de contraseña, para que no salga como texto plano
         contrasena = new JPasswordField();
         contrasena.setBounds(95,295,100,20);
@@ -193,6 +200,7 @@ public class Formulario extends JFrame implements ItemListener, ActionListener {
 
         otros = new JCheckBox("Otros");
         otros.setBounds(350,245,75,30);
+        otros.addChangeListener(this);
         add(otros);
 
         //Añadimos JTextArea con su JScrollPane
@@ -286,6 +294,16 @@ public class Formulario extends JFrame implements ItemListener, ActionListener {
         menuAcciones.add(itemSalir);
         itemSalir.addActionListener(this);
     }//Fin crearFormulario
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        if (otros.isSelected()){
+            otrosidiomas.setVisible(true);
+        }
+        if (otros.isSelected() == false){
+            otrosidiomas.setVisible(false);
+        }
+    }
 
     //Metodo ItemListener, dependiendo del pais que seleccione aparecen las provincias
     public void itemStateChanged(ItemEvent e) {
